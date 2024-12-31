@@ -25,6 +25,12 @@ body {
   text-align: left;
 }
 
+.banner-image {
+  background-color: #1e40af;
+  padding: 0px;
+  text-align: left;
+}
+
 .banner-title {
   font-size: 2.5rem;
   font-weight: bold;

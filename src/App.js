@@ -1,6 +1,7 @@
 // App.jsx
 import React, { useState } from 'react';
 import './styles.css';
+import banner from './banner.png';
 
 const Dialog = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
@@ -40,7 +41,6 @@ const ComparisonDialog = ({ isOpen, onClose }) => {
             <li>earn a certificate</li>
           </ul>
         </div>
-
         <div className="comparison-section">
           <h3>Capstone Project:</h3>
           <ul>
@@ -67,6 +67,9 @@ const App = () => {
       <div className="banner">
         <h1 className="banner-title">ICAPP</h1>
         <p className="banner-subtitle">Internships, Apprenticeships and Capstone Projects</p>
+      </div>
+      <div className="banner-image">
+          <img src={banner} alt="Banner" style={{ width: '100%', height: '100px', padding: '0px'}} />
       </div>
       <header className="header">
         <h1>Need Technology Experience?</h1>
