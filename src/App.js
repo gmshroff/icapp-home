@@ -63,6 +63,10 @@ const App = () => {
   };
   return (
     <div className="app">
+      <div className="banner">
+        <h1 className="banner-title">ICAPP</h1>
+        <p className="banner-subtitle">Internships, Apprenticeships and Capstone Projects</p>
+      </div>
       <header className="header">
         <h1>Need Technology Experience?</h1>
         <p>Apply for Research/Engineering Internships, Apprenticeships and Capstone Projects</p>
