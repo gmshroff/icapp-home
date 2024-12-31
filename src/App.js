@@ -122,7 +122,7 @@ const App = () => {
             <li>Post projects with specific deliverables</li>
             <li>Get work done by motivated students at a reasonable cost</li>
           </ul>
-          <p>Email info@icapptech.com to register as a partner</p>
+          <p>Email icapp_dev@hotmail.com to register as a partner</p>
         </section>
       </main>
 
