@@ -88,7 +88,7 @@ const App = () => {
           <div className="steps">
             {[
               'Browse available projects',
-              'sign-up and Upload your CV',
+              'Sign-up and Upload your CV',
               'Submit project preferences**',
               'Take a short online screening quiz*',
               'Sit for an automated online video interview',
@@ -104,7 +104,7 @@ const App = () => {
           </div>
 
           <div className="notes">
-            <p>* After you have taken the quiz it may take time for a project options to be generated for you, i.e., you will be put on a waitlist</p>
+            <p>*After you have taken the quiz & video interview, it may take time for a project options to be generated for you, i.e., you will be put on a waitlist</p>
             <p>**Some capstone projects may not require any quiz or video assessment and can be started immediately.</p>
           </div>
           <button className="get-started" onClick={handleGetStarted}>GET STARTED</button>
