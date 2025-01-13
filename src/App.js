@@ -3,56 +3,18 @@ import React, { useState } from 'react';
 import './styles.css';
 import banner from './banner.png';
 
-const Dialog = ({ isOpen, onClose, children }) => {
-  if (!isOpen) return null;
-  
+const About = () => {
   return (
-    <div className="dialog-overlay" onClick={onClose}>
-      <div className="dialog-content" onClick={e => e.stopPropagation()}>
-        {children}
-        <button className="dialog-close" onClick={onClose}>×</button>
-      </div>
+    <div className="about">
+      <h2>About ICAPP</h2>
+      <p>
+        ICAPP (Internship, Capstone, and Apprenticeship Program) is designed to provide students with hands-on experience in their respective fields. 
+        Our programs are tailored to bridge the gap between academic knowledge and practical application.
+      </p>
+      <p>
+        We collaborate with industry partners to ensure that our students gain valuable insights and skills that will prepare them for their future careers.
+      </p>
     </div>
-  );
-};
-
-const ComparisonDialog = ({ isOpen, onClose }) => {
-  return (
-    <Dialog isOpen={isOpen} onClose={onClose}>
-      <div className="comparison-content">
-        <div className="comparison-section">
-          <h3>Internship:</h3>
-          <ul>
-            <li>Work with an industry partner or affiliated professor and earn a <em>stipend</em></li>
-            <li>duration can be as little as a month to a full year</li>
-            <li>online or offline</li>
-            <li>one student per project</li>
-            <li>earn a certificate</li>
-          </ul>
-        </div>
-
-        <div className="comparison-section">
-          <h3>Apprenticeship:</h3>
-          <ul>
-            <li>Work with an industry partner or affiliated professor: <em>no stipend</em></li>
-            <li>duration can be as little as a month to a full year</li>
-            <li>online or offline</li>
-            <li>one student per project</li>
-            <li>earn a certificate</li>
-          </ul>
-        </div>
-        <div className="comparison-section">
-          <h3>Capstone Project:</h3>
-          <ul>
-            <li>Enrol in a curated project-based learning defined by an industry partner or affiliated professor</li>
-            <li>online</li>
-            <li>Runs like a course assignment, i.e., many students doing the same project</li>
-            <li>may require payment of a <em>fee</em> as in an online course</li>
-            <li>earn a certificate</li>
-          </ul>
-        </div>
-      </div>
-    </Dialog>
   );
 };
 
@@ -61,16 +23,19 @@ const App = () => {
   const handleGetStarted = () => {
     window.open('https://icapp-program.anvil.app', '_blank', 'noopener noreferrer');
   };
+
   return (
     <div className="app">
       <title>ICAPP</title>
+
       <div className="banner">
         <h1 className="banner-title">ICAPP</h1>
         <p className="banner-subtitle">Internships, Apprenticeships and Capstone Projects</p>
       </div>
       <div className="banner-image">
-          <img src={banner} alt="Banner" style={{ width: '100%', height: '100px', padding: '0px'}} />
+        <img src={banner} alt="Banner" style={{ width: '100%', height: '100px', padding: '0px'}} />
       </div>
+
       <header className="header">
         <h1>Need Technology Experience?</h1>
         <p>Apply for Research/Engineering Internships, Apprenticeships and Capstone Projects</p>
@@ -124,12 +89,14 @@ const App = () => {
           </ul>
           <p>Email icapp_dev@hotmail.com to register as a partner</p>
         </section>
+
+        {/* Always visible About section */}
+        <About />
       </main>
 
-      <ComparisonDialog 
-        isOpen={isDialogOpen} 
-        onClose={() => setIsDialogOpen(false)} 
-      />
+      <footer style={{ fontSize: 'small', textAlign: 'center', padding: '10px' }}>
+        ICAPP Technologies a Unit of DND P(L)
+      </footer>
     </div>
   );
 };
