@@ -18,24 +18,74 @@ const About = () => {
   );
 };
 
+const Dialog = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
+  
+  return (
+    <div className="dialog-overlay" onClick={onClose}>
+      <div className="dialog-content" onClick={e => e.stopPropagation()}>
+        {children}
+        <button className="dialog-close" onClick={onClose}>×</button>
+      </div>
+    </div>
+  );
+};
+
+const ComparisonDialog = ({ isOpen, onClose }) => {
+  return (
+    <Dialog isOpen={isOpen} onClose={onClose}>
+      <div className="comparison-content">
+        <div className="comparison-section">
+          <h3>Internship:</h3>
+          <ul>
+            <li>Work with an industry partner or affiliated professor and earn a <em>stipend</em></li>
+            <li>duration can be as little as a month to a full year</li>
+            <li>online or offline</li>
+            <li>one student per project</li>
+            <li>earn a certificate</li>
+          </ul>
+        </div>
+
+        <div className="comparison-section">
+          <h3>Apprenticeship:</h3>
+          <ul>
+            <li>Work with an industry partner or affiliated professor: <em>no stipend</em></li>
+            <li>duration can be as little as a month to a full year</li>
+            <li>online or offline</li>
+            <li>one student per project</li>
+            <li>earn a certificate</li>
+          </ul>
+        </div>
+        <div className="comparison-section">
+          <h3>Capstone Project:</h3>
+          <ul>
+            <li>Enrol in a curated project-based learning defined by an industry partner or affiliated professor</li>
+            <li>online</li>
+            <li>Runs like a course assignment, i.e., many students doing the same project</li>
+            <li>may require payment of a <em>fee</em> as in an online course</li>
+            <li>earn a certificate</li>
+          </ul>
+        </div>
+      </div>
+    </Dialog>
+  );
+};
+
 const App = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleGetStarted = () => {
     window.open('https://icapp-program.anvil.app', '_blank', 'noopener noreferrer');
   };
-
   return (
     <div className="app">
       <title>ICAPP</title>
-
       <div className="banner">
         <h1 className="banner-title">ICAPP</h1>
         <p className="banner-subtitle">Internships, Apprenticeships and Capstone Projects</p>
       </div>
       <div className="banner-image">
-        <img src={banner} alt="Banner" style={{ width: '100%', height: '100px', padding: '0px'}} />
+          <img src={banner} alt="Banner" style={{ width: '100%', height: '100px', padding: '0px'}} />
       </div>
-
       <header className="header">
         <h1>Need Technology Experience?</h1>
         <p>Apply for Research/Engineering Internships, Apprenticeships and Capstone Projects</p>
@@ -97,6 +147,11 @@ const App = () => {
       <footer style={{ fontSize: 'small', textAlign: 'center', padding: '10px' }}>
         ICAPP Technologies a Unit of DND P(L)
       </footer>
+
+      <ComparisonDialog 
+        isOpen={isDialogOpen} 
+        onClose={() => setIsDialogOpen(false)} 
+      />
     </div>
   );
 };
