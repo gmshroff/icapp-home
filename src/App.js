@@ -106,7 +106,7 @@ const App = () => {
               'Sign-up and Upload your CV',
               'Submit project preferences**',
               'Take a short online screening quiz*',
-              'Sit for an automated online video interview',
+              'Sit for an automated online video interview***',
               'Get matched* to an internship/apprenticeship or capstone project in an upcoming session',
               'Register and execute your project on the ICAPP platform',
               'Collect your certificate of completion'
@@ -121,14 +121,14 @@ const App = () => {
           <div className="notes">
             <p>*After you have taken the quiz & video interview, it may take time for a project options to be generated for you, i.e., you will be put on a waitlist</p>
             <p>**Some capstone projects may not require any quiz or video assessment and can be started immediately.</p>
+            <p>***Some projects may not require a video assessment, only the screening quiz</p>
           </div>
           <button className="get-started" onClick={handleGetStarted}>GET STARTED</button>
         </section>
 
         <section className="sessions">
           <h2>Upcoming Sessions:</h2>
-          <p>Spring: Feb - May 2025</p>
-          <p>Summer: Jun - Jul 2025</p>
+          <p><b>Summer: May - Jul 2025</b> (Applications open mid-Feb 2025)</p>
         </section>
 
         <section className="companies">
