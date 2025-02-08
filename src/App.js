@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './styles.css';
 import banner from './banner.png';
+import icapp from './icapp.png'
 
 const About = () => {
   return (
@@ -80,8 +81,8 @@ const App = () => {
     <div className="app">
       <title>ICAPP</title>
       <div className="banner">
-        <h1 className="banner-title">ICAPP</h1>
-        <p className="banner-subtitle">Internships, Apprenticeships and Capstone Projects</p>
+      <h1 className="banner-title">ICAPP</h1>
+      <p className="banner-subtitle">Internships, Apprenticeships and Capstone Projects</p>
       </div>
       <div className="banner-image">
           <img src={banner} alt="Banner" style={{ width: '100%', height: '100px', padding: '0px'}} />
