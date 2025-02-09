@@ -2,14 +2,13 @@
 import React, { useState } from 'react';
 import './styles.css';
 import banner from './banner.png';
-import icapp from './icapp.png'
 
 const About = () => {
   return (
     <div className="about">
       <h2>About ICAPP</h2>
       <p>
-        ICAPP (Internship, Capstone, and Apprenticeship Program) is designed to provide students with hands-on experience in their respective fields. 
+        ICAPP (Internships, Capstone Projects, and Apprenticeships Program) is designed to provide students with hands-on experience in their respective fields. 
         Our programs are tailored to bridge the gap between academic knowledge and practical application.
       </p>
       <p>
@@ -147,7 +146,7 @@ const App = () => {
       </main>
 
       <footer style={{ fontSize: 'small', textAlign: 'center', padding: '10px' }}>
-        ICAPP Technologies a Unit of DND P(L)
+        ICAPP Technologies, a Unit of DND P(L)
       </footer>
 
       <ComparisonDialog 
