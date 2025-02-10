@@ -16,13 +16,22 @@ body {
 
 .app {
   min-height: 100vh;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
+  transition: transform 0.1s ease;
+  position: relative;
+}
+
+.app.open {
+  transform: translateX(250px);
 }
 
 .banner {
   background-color: #1e40af;
   padding: 1.5rem;
   text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .banner-image {
@@ -275,4 +284,71 @@ h2 {
   .comparison-section h3 {
     font-size: 1.25rem;
   }
+}
+
+/* Update NavBar styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 150px;
+  background-color: #1e40af;
+  transform: translateX(-250px);
+  transition: transform 0.1s ease-in-out;
+}
+
+.navbar.open {
+  transform: translateX(0);
+}
+
+.main-content {
+  transition: margin-left 0.1s ease-in-out;
+  margin-left: 0;
+  background-color: white;
+}
+
+.main-content.shifted {
+  margin-left: 150px;
+}
+
+.navbar-toggle {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  margin: 0 0 20px 10px;
+}
+
+.navbar-links {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 0;
+}
+
+/* Add hamburger icon styles */
+.hamburger-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.hamburger-icon span {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transition: all 0.1s ease;
 }

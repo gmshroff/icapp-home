@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import './styles.css';
 import banner from './banner.png';
+import NavBar from './NavBar';
+import Browse from './Browse';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -71,21 +74,15 @@ const ComparisonDialog = ({ isOpen, onClose }) => {
   );
 };
 
-const App = () => {
+const MainContent = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const handleGetStarted = () => {
     window.open('https://projects.icapp.co.in', '_blank', 'noopener noreferrer');
   };
+
   return (
-    <div className="app">
-      <title>ICAPP</title>
-      <div className="banner">
-      <h1 className="banner-title">ICAPP</h1>
-      <p className="banner-subtitle">Internships, Apprenticeships and Capstone Projects</p>
-      </div>
-      <div className="banner-image">
-          <img src={banner} alt="Banner" style={{ width: '100%', height: '100px', padding: '0px'}} />
-      </div>
+    <>
       <header className="header">
         <h1>Need Technology Experience?</h1>
         <p>Apply for Research/Engineering Internships, Apprenticeships and Capstone Projects</p>
@@ -124,6 +121,11 @@ const App = () => {
             <p>***Some projects may not require a video assessment, only the screening quiz</p>
           </div>
           <button className="get-started" onClick={handleGetStarted}>GET STARTED</button>
+          <div className="how-it-works" style={{textAlign:'center',marginBottom:10}}> OR </div>
+          <p style={{textAlign:'center'}}>
+          <a style={{fontSize:20}} href="/browse">Browse Projects</a>
+          </p>
+          
         </section>
 
         <section className="sessions">
@@ -145,15 +147,54 @@ const App = () => {
         <About />
       </main>
 
-      <footer style={{ fontSize: 'small', textAlign: 'center', padding: '10px' }}>
-        ICAPP Technologies, a Unit of DND P(L)
-      </footer>
-
       <ComparisonDialog 
         isOpen={isDialogOpen} 
         onClose={() => setIsDialogOpen(false)} 
       />
-    </div>
+    </>
+  );
+};
+
+const App = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  return (
+    <Router>
+      <div className="App">
+        <NavBar toggleNav={toggleNav} isOpen={isNavOpen} />
+        <div className={`main-content ${isNavOpen ? 'shifted' : ''}`}>
+          <div className="banner">
+            {!isNavOpen && (
+              <button onClick={() => setIsNavOpen(true)} className="navbar-toggle">
+                <div className="hamburger-icon">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </button>
+            )}
+            <h1 className="banner-title">ICAPP</h1>
+            <p className="banner-subtitle">Internships, Apprenticeships and Capstone Projects</p>
+          </div>
+          <div className="banner-image">
+            <img src={banner} alt="Banner" style={{ width: '100%', height: '100px', padding: '0px'}} />
+          </div>
+          
+          <Routes>
+            <Route path="/" element={<MainContent />} />
+            <Route path="/browse" element={<Browse />} />
+          </Routes>
+          
+          <footer style={{ fontSize: 'small', textAlign: 'center', padding: '10px' }}>
+            ICAPP Technologies, a Unit of DND P(L)
+          </footer>
+        </div>
+      </div>
+    </Router>
   );
 };
 
