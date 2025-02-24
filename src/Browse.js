@@ -186,7 +186,14 @@ const Browse = () => {
                             return preferredProjects[a.uid] - preferredProjects[b.uid];
                         }
                         return 0;
-                    })
+                    }).sort((a,b) => {
+                        if ((a.public_details.status || '').includes('Open') && ((b.public_details.status || '').includes('Open')==false)){
+                          return -1
+                        }
+                        else if (((a.public_details.status || '').includes('Open') == false) && (b.public_details.status || '').includes('Open')){
+                          return 1
+                        }
+                      })
                     .map((project) => {
                         const isPreferred = project.uid in preferredProjects;
                         const rank = isPreferred ? preferredProjects[project.uid] : null;
