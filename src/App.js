@@ -130,8 +130,7 @@ const MainContent = () => {
 
         <section className="sessions">
           <h2>Upcoming Sessions:</h2>
-          <p><b>Summer: May - Jul 2025</b> (Applications open mid-Feb 2025)</p>
-          <p><b>Featured: ACM India <a href="https://ikdd.acm.org/uplink-2025.php" target="_blank" rel="noopener noreferrer">IKDD Uplink</a> paid summer internship <a href="https://projects.icapp.co.in/#browse" target="_blank" rel="noopener noreferrer">Projects</a> on ICAPP</b></p>
+          <p><b>Summer: May - Jul 2025</b> (Applications Open)</p>
         </section>
 
         <section className="companies">
