@@ -130,7 +130,7 @@ const MainContent = () => {
 
         <section className="sessions">
           <h2>Upcoming Sessions:</h2>
-          <p><b>Summer: May - Jul 2025</b> (Applications Open)</p>
+          <p><b>Summer: May - Jul 2025</b> (Internship Applications Closed)</p>
         </section>
 
         <section className="companies">
