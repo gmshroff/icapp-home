@@ -173,20 +173,20 @@ const MainContent = () => {
                 </div>
             </div>
         </div>
-        <div style={{ padding: '1rem', marginBottom: '20px' }}>
-                    <button
-                      className="cta-button"
-                      style={{ marginRight: '1rem' }}
-                      onClick={() => window.open('/browse', '_blank')}
-                    >
-                      Browse Projects and Positions
-                    </button>
-                    <button
-                      className="cta-button"
-                      onClick={() => window.open('https://projects.icapp.co.in/', '_blank')}
-                    >
-                      Get Started with ICAPP
-                    </button>
+        <div className="button-row">
+          <button
+            className="cta-button"
+            style={{ marginRight: '1rem' }}
+            onClick={() => window.open('/browse', '_blank')}
+          >
+            Browse Projects and Positions
+          </button>
+          <button
+            className="cta-button"
+            onClick={() => window.open('https://projects.icapp.co.in/', '_blank')}
+          >
+            Get Started with ICAPP
+          </button>
         </div>
         <div className="upcoming-sessions">
             <h3>Upcoming Sessions</h3>
