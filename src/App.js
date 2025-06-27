@@ -5,6 +5,7 @@ import banner from './banner.png';
 import NavBar from './NavBar';
 import Browse from './Browse';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
 
 const About = () => {
   return (
@@ -83,68 +84,125 @@ const MainContent = () => {
 
   return (
     <>
-      <header className="header">
+      <section className="hero">
         <h1>Need Technology Experience?</h1>
-        <p>Apply for Research/Engineering Internships, Apprenticeships and Capstone Projects</p>
-        <button 
-          className="link-button"
-          onClick={() => setIsDialogOpen(true)}
-        >
-          What is the difference between these?
-        </button>
-      </header>
+        <p>Choose your path to gain hands-on experience in technology through our two distinct offerings</p>
+    </section>
 
-      <main>
-        <section className="how-it-works">
-          <h2>How does it work?</h2>
-          <div className="steps">
-            {[
-              'Browse available projects',
-              'Sign-up and Upload your CV',
-              'Submit project preferences**',
-              'Take a short online screening quiz*',
-              'Sit for an automated online video interview***',
-              'Get matched* to an internship/apprenticeship or capstone project in an upcoming session',
-              'Register and execute your project on the ICAPP platform',
-              'Collect your certificate of completion'
-            ].map((step, index) => (
-              <div key={index} className="step">
-                <span className="step-number">{index + 1}.</span>
-                <p>{step}</p>
-              </div>
-            ))}
-          </div>
+    <main className="main-content">
+        <div className="offerings">
+            {/* Internships & Jobs Section */}
+            <div className="offering-card">
+                <div className="offering-header">
+                    <div className="offering-icon internships-icon">💼</div>
+                    <div>
+                        <h2 className="offering-title">Internships & Jobs</h2>
+                        <p className="offering-subtitle">Competitive positions with companies & research labs</p>
+                    </div>
+                </div>
+                <p className="offering-description">
+                    Apply for research/engineering internships, apprenticeships, and job positions posted by companies and research organizations. These opportunities require a competitive selection process.
+                </p>
+                
+                <div className="process-steps">
+                    <h3 className="process-title">🔍 Selection Process:</h3>
+                    <ol className="step-list">
+                        <li className="step-item">
+                            <span className="step-number">1</span>
+                            <span className="step-text">Browse available positions and submit your application</span>
+                        </li>
+                        <li className="step-item">
+                            <span className="step-number">2</span>
+                            <span className="step-text">Complete AI-driven online assessment quiz</span>
+                        </li>
+                        <li className="step-item">
+                            <span className="step-number">3</span>
+                            <span className="step-text">Participate in automated video interview</span>
+                        </li>
+                        <li className="step-item">
+                            <span className="step-number">4</span>
+                            <span className="step-text">Get matched to suitable opportunities</span>
+                        </li>
+                        <li className="step-item">
+                            <span className="step-number">5</span>
+                            <span className="step-text">Start your internship/job and earn completion certificate</span>
+                        </li>
+                    </ol>
+                </div>
+                {/* <button className="cta-button" onClick={() => window.location.href = '/browse'}>Browse Positions</button> */}
 
-          <div className="notes">
-            <p>*After you have taken the quiz & video interview, it may take time for a project options to be generated for you, i.e., you will be put on a waitlist</p>
-            <p>**Some capstone projects may not require any quiz or video assessment and can be started immediately.</p>
-            <p>***Some projects may not require a video assessment, only the screening quiz</p>
-          </div>
-          <button className="get-started" onClick={handleGetStarted}>GET STARTED</button>
-          <div className="how-it-works" style={{textAlign:'center',marginBottom:10}}> OR </div>
-          <p style={{textAlign:'center'}}>
-          <a style={{fontSize:20}} href="/browse">Browse Projects</a>
-          </p>
-          
-        </section>
+            </div>
 
-        <section className="sessions">
-          <h2>Upcoming Sessions:</h2>
-          <p><b>Summer: May - Jul 2025</b> (Internship Applications Closed)</p>
-        </section>
+            {/* Capstone Projects Section */}
+            <div className="offering-card capstone-card">
+                <div className="offering-header">
+                    <div className="offering-icon capstone-icon">🎓</div>
+                    <div>
+                        <h2 className="offering-title">Capstone Projects</h2>
+                        <p className="offering-subtitle">Self-paced learning modules for everyone</p>
+                    </div>
+                </div>
+                <p className="offering-description">
+                    Enroll in structured capstone projects and learning modules designed for self-paced skill development. Open to all participants without any selection criteria.
+                </p>
+                
+                <div className="process-steps">
+                    <h3 className="process-title">📚 Enrollment Process:</h3>
+                    <ol className="step-list">
+                        <li className="step-item">
+                            <span className="step-number">1</span>
+                            <span className="step-text">Browse available capstone projects and modules</span>
+                        </li>
+                        <li className="step-item">
+                            <span className="step-number">2</span>
+                            <span className="step-text">Enroll instantly in projects of your choice</span>
+                        </li>
+                        <li className="step-item">
+                            <span className="step-number">3</span>
+                            <span className="step-text">Complete projects at your own pace</span>
+                        </li>
+                        <li className="step-item">
+                            <span className="step-number">4</span>
+                            <span className="step-text">Submit your completed project work</span>
+                        </li>
+                        <li className="step-item">
+                            <span className="step-number">5</span>
+                            <span className="step-text">Receive completion certificate</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div style={{ padding: '1rem', marginBottom: '20px' }}>
+                    <button
+                      className="cta-button"
+                      style={{ marginRight: '1rem' }}
+                      onClick={() => window.open('/browse', '_blank')}
+                    >
+                      Browse Projects and Positions
+                    </button>
+                    <button
+                      className="cta-button"
+                      onClick={() => window.open('https://projects.icapp.co.in/', '_blank')}
+                    >
+                      Get Started with ICAPP
+                    </button>
+        </div>
+        <div className="upcoming-sessions">
+            <h3>Upcoming Sessions</h3>
+            <p className="session-info">Summer: May - Jul 2025 (Internship Applications Closed)</p>
+        </div>
 
-        <section className="companies">
-          <h2>Companies and Educators</h2>
-          <ul>
-            <li>Post projects with specific deliverables</li>
-            <li>Get work done by motivated students at a reasonable cost</li>
-          </ul>
-          <p>Email support@icapp.co.in to register as a partner</p>
-        </section>
-
-        {/* Always visible About section */}
-        <About />
-      </main>
+        <div className="companies-section">
+            <h3>For Companies and Educators</h3>
+            <ul className="companies-list">
+                <li>Post internships and jobs with specific deliverables</li>
+                <li>Get work done by motivated students at reasonable cost</li>
+                <li>Create capstone projects and learning modules</li>
+            </ul>
+            <p className="contact-info">Email support@icapp.co.in to register as a partner</p>
+        </div>
+    </main>
 
       <ComparisonDialog 
         isOpen={isDialogOpen} 

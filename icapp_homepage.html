@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICAPP - Internships, Apprenticeships and Capstone Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4a5fc1 0%, #6b46c1 100%);
+            color: white;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffd93d, #ff6b6b);
+            background-size: 400% 100%;
+            animation: colorFlow 8s ease-in-out infinite;
+        }
+
+        @keyframes colorFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 5rem;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: .5rem;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4a5fc1 0%, #6b46c1 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .offerings {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .offering-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .offering-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .offering-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .internships-icon {
+            background: linear-gradient(135deg, #4a5fc1, #6b46c1);
+            color: white;
+        }
+
+        .capstone-icon {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .offering-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .offering-subtitle {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .offering-description {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-steps {
+            margin-bottom: 2rem;
+        }
+
+        .process-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .step-list {
+            list-style: none;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem;
+            background: #f9fafb;
+            border-radius: 6px;
+        }
+
+        .step-number {
+            background: #4a5fc1;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .capstone-card .step-number {
+            background: #10b981;
+        }
+
+        .step-text {
+            color: #4b5563;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #4a5fc1, #6b46c1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(74, 95, 193, 0.3);
+        }
+
+        .capstone-card .cta-button {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .capstone-card .cta-button:hover {
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .upcoming-sessions {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .upcoming-sessions h3 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .session-info {
+            color: #4a5fc1;
+            font-weight: 500;
+        }
+
+        .companies-section {
+            background: #374151;
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .companies-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .companies-list {
+            list-style: none;
+        }
+
+        .companies-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .companies-list li::before {
+            content: '•';
+            color: #4a5fc1;
+            position: absolute;
+            left: 0;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .offerings {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .offering-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">ICAPP</div>
+            <div class="tagline">Internships, Apprenticeships and Capstone Projects</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Need Technology Experience?</h1>
+        <p>Choose your path to gain hands-on experience in technology through our two distinct offerings</p>
+    </section>
+
+    <main class="main-content">
+        <div class="offerings">
+            <!-- Internships & Jobs Section -->
+            <div class="offering-card">
+                <div class="offering-header">
+                    <div class="offering-icon internships-icon">💼</div>
+                    <div>
+                        <h2 class="offering-title">Internships & Jobs</h2>
+                        <p class="offering-subtitle">Competitive positions with companies & research labs</p>
+                    </div>
+                </div>
+                <p class="offering-description">
+                    Apply for research/engineering internships, apprenticeships, and job positions posted by companies and research organizations. These opportunities require a competitive selection process.
+                </p>
+                
+                <div class="process-steps">
+                    <h3 class="process-title">🔍 Selection Process:</h3>
+                    <ol class="step-list">
+                        <li class="step-item">
+                            <span class="step-number">1</span>
+                            <span class="step-text">Browse available positions and submit your application</span>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-number">2</span>
+                            <span class="step-text">Complete AI-driven online assessment quiz</span>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-number">3</span>
+                            <span class="step-text">Participate in automated video interview</span>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-number">4</span>
+                            <span class="step-text">Get matched to suitable opportunities</span>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-number">5</span>
+                            <span class="step-text">Start your internship/job and earn completion certificate</span>
+                        </li>
+                    </ol>
+                </div>
+                
+                <button class="cta-button">Apply for Positions</button>
+            </div>
+
+            <!-- Capstone Projects Section -->
+            <div class="offering-card capstone-card">
+                <div class="offering-header">
+                    <div class="offering-icon capstone-icon">🎓</div>
+                    <div>
+                        <h2 class="offering-title">Capstone Projects</h2>
+                        <p class="offering-subtitle">Self-paced learning modules for everyone</p>
+                    </div>
+                </div>
+                <p class="offering-description">
+                    Enroll in structured capstone projects and learning modules designed for self-paced skill development. Open to all participants without any selection criteria.
+                </p>
+                
+                <div class="process-steps">
+                    <h3 class="process-title">📚 Enrollment Process:</h3>
+                    <ol class="step-list">
+                        <li class="step-item">
+                            <span class="step-number">1</span>
+                            <span class="step-text">Browse available capstone projects and modules</span>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-number">2</span>
+                            <span class="step-text">Enroll instantly in projects of your choice</span>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-number">3</span>
+                            <span class="step-text">Complete projects at your own pace</span>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-number">4</span>
+                            <span class="step-text">Submit your completed project work</span>
+                        </li>
+                        <li class="step-item">
+                            <span class="step-number">5</span>
+                            <span class="step-text">Receive completion certificate</span>
+                        </li>
+                    </ol>
+                </div>
+                
+                <button class="cta-button">Browse Projects</button>
+            </div>
+        </div>
+
+        <div class="upcoming-sessions">
+            <h3>Upcoming Sessions</h3>
+            <p class="session-info">Summer: May - Jul 2025 (Internship Applications Closed)</p>
+        </div>
+
+        <div class="companies-section">
+            <h3>For Companies and Educators</h3>
+            <ul class="companies-list">
+                <li>Post internships and jobs with specific deliverables</li>
+                <li>Get work done by motivated students at reasonable cost</li>
+                <li>Create capstone projects and learning modules</li>
+            </ul>
+            <p class="contact-info">Email support@icapp.co.in to register as a partner</p>
+        </div>
+    </main>
+</body>
+</html>
