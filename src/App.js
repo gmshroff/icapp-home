@@ -96,12 +96,12 @@ const MainContent = () => {
                 <div className="offering-header">
                     <div className="offering-icon internships-icon">💼</div>
                     <div>
-                        <h2 className="offering-title">Internships & Jobs</h2>
-                        <p className="offering-subtitle">Competitive positions with companies & research labs</p>
+                        <h2 className="offering-title">Internships, Projects & Jobs</h2>
+                        <p className="offering-subtitle">Competitive positions with companies, research labs and reputed faculty</p>
                     </div>
                 </div>
                 <p className="offering-description">
-                    Apply for research/engineering internships, apprenticeships, and job positions posted by companies and research organizations. These opportunities require a competitive selection process.
+                    Apply for research/engineering internships, apprenticeships, and job positions posted by reputed compaines / industry researchers and faculty. These opportunities require a competitive selection process.
                 </p>
                 
                 <div className="process-steps">
@@ -109,7 +109,7 @@ const MainContent = () => {
                     <ol className="step-list">
                         <li className="step-item">
                             <span className="step-number">1</span>
-                            <span className="step-text">Browse available positions and submit your application</span>
+                            <span className="step-text">Browse available projects and apply</span>
                         </li>
                         <li className="step-item">
                             <span className="step-number">2</span>
@@ -125,7 +125,7 @@ const MainContent = () => {
                         </li>
                         <li className="step-item">
                             <span className="step-number">5</span>
-                            <span className="step-text">Start your internship/job and earn completion certificate</span>
+                            <span className="step-text">Earn a completion certificate / job offer</span>
                         </li>
                     </ol>
                 </div>
@@ -143,7 +143,8 @@ const MainContent = () => {
                     </div>
                 </div>
                 <p className="offering-description">
-                    Enroll in structured capstone projects and learning modules designed for self-paced skill development. Open to all participants without any selection criteria.
+                    Enroll in structured capstone projects and learning modules designed for self-paced skill development. Learn via lectures and podcasts. Record and publish your final presentation to an AI reviewer. 
+                    Open to all participants without any selection criteria.
                 </p>
                 
                 <div className="process-steps">
@@ -190,7 +191,7 @@ const MainContent = () => {
         </div>
         <div className="upcoming-sessions">
             <h3>Upcoming Sessions</h3>
-            <p className="session-info">Summer: May - Jul 2025 (Internship Applications Closed)</p>
+            <p className="session-info">Fall: Aug - Nov 2025 (Applications Opening Soon)</p>
         </div>
 
         <div className="companies-section">
