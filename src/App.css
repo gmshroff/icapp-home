@@ -340,6 +340,28 @@ body {
   flex-wrap: wrap;
 }
 
+.new-badge {
+  position: absolute;
+  top: -5px;
+  right: 5px;
+  width: 50px;
+  height: 35px;
+  background-color: yellow;
+  color: black;
+  display: flex;
+  border: 2px solid rgb(13, 2, 2);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  z-index: 10;
+  animation: pulse 2s infinite;
+  line-height: 1;
+}
+
 @media (max-width: 600px) {
   .button-row {
     flex-direction: column;

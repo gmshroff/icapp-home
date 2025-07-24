@@ -193,6 +193,20 @@ const Browse = () => {
                         else if (((a.public_details.status || '').includes('Open') == false) && (b.public_details.status || '').includes('Open')){
                           return 1
                         }
+                      }).sort((a, b) => {
+                        const aIsNew = (a.public_details.is_new || '').toLowerCase() === 'yes';
+                        const bIsNew = (b.public_details.is_new || '').toLowerCase() === 'yes';
+                        if (aIsNew && !bIsNew) return -1;
+                        if (!aIsNew && bIsNew) return 1;
+            
+                        // Now, both are new or both are not new. Sort by Open/Closed status.
+                        const aIsOpen = (a.public_details.status || '').toLowerCase().includes('open');
+                        const bIsOpen = (b.public_details.status || '').toLowerCase().includes('open');
+                        if (aIsOpen && !bIsOpen) return -1;
+                        if (!aIsOpen && bIsOpen) return 1;
+            
+                        // Otherwise, preserve original order
+                        return 0;
                       })
                     .map((project) => {
                         const isPreferred = project.uid in preferredProjects;
@@ -212,7 +226,9 @@ const Browse = () => {
                                 onDrop={(e) => handleDrop(e, project.uid)}
                             >
                                 {isPreferred && <div className="rank">{rank}</div>}
-                                <h3 className="project-title">{project.title}</h3>
+                                <h3 className="project-title">{project.title}
+                                {(project.public_details.is_new || 'no') == 'yes' && (<div class="new-badge"><div>New</div></div>)}
+                                </h3>
                                 <div className="project-details">
                                     <div dangerouslySetInnerHTML={{ 
                                         __html: project.public_details.CustomDescription || 
