@@ -236,7 +236,7 @@ const App = () => {
               </button>
             )}
             <h1 className="banner-title">ICAPP</h1>
-            <p className="banner-subtitle">Internships, Apprenticeships and Capstone Projects</p>
+            <p className="banner-subtitle">Internships, Courses, Applied Projects & Placements</p>
           </div>
           <div className="banner-image">
             <img src={banner} alt="Banner" style={{ width: '100%', height: '100px', padding: '0px'}} />
