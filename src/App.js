@@ -12,7 +12,7 @@ const About = () => {
     <div className="about">
       <h2>About ICAPP</h2>
       <p>
-        ICAPP (Internships, Capstone Projects, and Apprenticeships Program) is designed to provide students with hands-on experience in their respective fields. 
+        ICAPP (Internships, Courses, Applied Projects and Placements) provides students with hands-on experience in their respective fields. 
         Our programs are tailored to bridge the gap between academic knowledge and practical application.
       </p>
       <p>
