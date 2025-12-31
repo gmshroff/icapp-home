@@ -191,7 +191,7 @@ const MainContent = () => {
         </div>
         <div className="upcoming-sessions">
             <h3>Upcoming Sessions</h3>
-            <p className="session-info">Fall: Aug - Nov 2025 (Applications Opening Soon)</p>
+            <p className="session-info">Summer: May - July 2026 (Applications Opening in March)</p>
         </div>
 
         <div className="companies-section">
