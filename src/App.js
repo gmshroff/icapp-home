@@ -1,5 +1,5 @@
 // App.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 import banner from './banner.png';
 import NavBar from './NavBar';
@@ -74,6 +74,13 @@ const ComparisonDialog = ({ isOpen, onClose }) => {
       </div>
     </Dialog>
   );
+};
+
+const ExternalRedirect = ({ url }) => {
+  useEffect(() => {
+    window.location.href = url;
+  }, [url]);
+  return null;
 };
 
 const MainContent = () => {
@@ -231,6 +238,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<MainContent />} />
             <Route path="/browse" element={<Browse />} />
+            <Route path="/projects" element={<ExternalRedirect url="https://icapp-projects.anvil.app" />} />
           </Routes>
           
           <footer style={{ fontSize: 'small', textAlign: 'center', padding: '10px' }}>
