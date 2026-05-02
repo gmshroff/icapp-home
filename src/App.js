@@ -177,21 +177,10 @@ const MainContent = () => {
         <div className="button-row">
           <button
             className="cta-button"
-            style={{ marginRight: '1rem' }}
-            onClick={() => window.open('/browse', '_blank')}
-          >
-            Browse Projects and Positions
-          </button>
-          <button
-            className="cta-button"
-            onClick={() => window.open('https://projects.icapp.co.in/', '_blank')}
+            onClick={() => window.open('https://icapp-projects.anvil.app', '_blank')}
           >
             Get Started with ICAPP
           </button>
-        </div>
-        <div className="upcoming-sessions">
-            <h3>Upcoming Sessions</h3>
-            <p className="session-info">Summer: May - July 2026 (Applications Opening in March)</p>
         </div>
 
         <div className="companies-section">
