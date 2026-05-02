@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.css'; // Import styles if needed
-import { Link } from 'react-router-dom';
 
 const NavBar = ({ toggleNav, isOpen }) => {
   return (

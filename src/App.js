@@ -7,6 +7,7 @@ import Browse from './Browse';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
+// eslint-disable-next-line no-unused-vars
 const About = () => {
   return (
     <div className="about">
@@ -77,10 +78,6 @@ const ComparisonDialog = ({ isOpen, onClose }) => {
 
 const MainContent = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const handleGetStarted = () => {
-    window.open('https://projects.icapp.co.in', '_blank', 'noopener noreferrer');
-  };
 
   return (
     <>

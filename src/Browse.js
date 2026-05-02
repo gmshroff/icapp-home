@@ -3,43 +3,6 @@ import './styles/Browse.css';
 
 const ANVILURL = "https://projects.icapp.co.in"
 
-// Test data
-const TEST_PROJECTS = [
-    {
-        uid: '1',
-        title: 'Machine Learning Project',
-        public_details: {
-            Description: 'Generalization Capabilities in LLMs via Circuit Discovery,"Large language models (LLMs) have shown remarkable abilities to capture world knowledge and perform reasoning, yet the internal mechanisms underlying commonsense reasoning, particularly across languages, remain poorly understood. The primary goal of this project is to explore a specific form of reasoning: commonsense reasoning (that requires world knowledge along with reasoning) in terms of multiple languages. More specifically, this project aims to investigate how LLMs process commonsense reasoning tasks that require integrating world knowledge with logical inference, focusing on scenarios where commonsense knowledge is language-independent (e.g., ""water’s state at the room temperature is ‘liquid’”  remains the same across languages, but its verbalization differs). We aim to localize the neural substrates responsible for such reasoning by analyzing identical commonsense queries presented in multiple languages (e.g., English, Hindi, etc.). This work will help determine if multilingual commonsense reasoning relies on language-agnostic circuits (shared neurons across languages) or language-specific modules and whether these circuits overlap with regions handling factual knowledge retrieval.",Good command over Python Programming; Machine Learning; A course on NLP that covers fundamentals of transformer architecture; familiarity with LLM architectures; knowledge about mechanistic interpretability is a plus point.',
-            Requirements: 'Python, TensorFlow, Computer Vision',
-            Outcomes: 'Working ML model with 90% accuracy',
-            status: 'Open',
-            CustomDescription: null
-        }
-    },
-    {
-        uid: '2',
-        title: 'Web Development Project',
-        public_details: {
-            Description: 'Create a responsive e-commerce website',
-            Requirements: 'React, Node.js, MongoDB',
-            Outcomes: 'Fully functional e-commerce platform',
-            status: 'Open',
-            CustomDescription: null
-        }
-    },
-    {
-        uid: '3',
-        title: 'Mobile App Development',
-        public_details: {
-            Description: 'Develop a fitness tracking mobile app',
-            Requirements: 'React Native, Firebase',
-            Outcomes: 'Published app on App Store',
-            status: 'Closed',
-            CustomDescription: null
-        }
-    }
-];
-
 const Browse = () => {
     const [projects, setProjects] = useState([]);
     const [preferredProjects, setPreferredProjects] = useState({});
@@ -187,12 +150,13 @@ const Browse = () => {
                         }
                         return 0;
                     }).sort((a,b) => {
-                        if ((a.public_details.status || '').includes('Open') && ((b.public_details.status || '').includes('Open')==false)){
+                        if ((a.public_details.status || '').includes('Open') && ((b.public_details.status || '').includes('Open')===false)){
                           return -1
                         }
-                        else if (((a.public_details.status || '').includes('Open') == false) && (b.public_details.status || '').includes('Open')){
+                        else if (((a.public_details.status || '').includes('Open') === false) && (b.public_details.status || '').includes('Open')){
                           return 1
                         }
+                        return 0;
                       }).sort((a, b) => {
                         const aIsNew = (a.public_details.is_new || '').toLowerCase() === 'yes';
                         const bIsNew = (b.public_details.is_new || '').toLowerCase() === 'yes';
@@ -227,7 +191,7 @@ const Browse = () => {
                             >
                                 {isPreferred && <div className="rank">{rank}</div>}
                                 <h3 className="project-title">{project.title}
-                                {(project.public_details.is_new || 'no') == 'yes' && (<div class="new-badge"><div>New</div></div>)}
+                                {(project.public_details.is_new || 'no') === 'yes' && (<div class="new-badge"><div>New</div></div>)}
                                 </h3>
                                 <div className="project-details">
                                     <div dangerouslySetInnerHTML={{ 
