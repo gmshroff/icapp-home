@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICAPP — Industry Career Preparation Platform</title>
+  <meta name="description" content="Preparing students for industry through AI-driven learning, assessment, and experiential projects." />
+  <meta name="theme-color" content="#3549B5" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────────── */
+    :root {
+      /* Brand */
+      --indigo-dark:  #252f85;
+      --indigo:       #3549B5;
+      --indigo-mid:   #3F51B5;
+      --indigo-light: #4c62cc;
+      --indigo-pale:  #e8ecfa;
+      --indigo-card:  #3549B5;   /* hero / card fill */
+      --sidebar:      #2a3da0;
+
+      /* Amber — matches the yellow CTAs in studio */
+      --amber:        #F5A420;
+      --amber-dark:   #d9891a;
+      --amber-light:  #ffc145;
+
+      /* Teal — for Projects offering */
+      --teal:         #0d7c6e;
+      --teal-light:   #1aa090;
+      --teal-pale:    #e0f4f2;
+
+      /* Neutrals */
+      --white:        #ffffff;
+      --bg:           #f2f4fb;
+      --bg-card:      #ffffff;
+      --text:         #1a2050;
+      --text-mid:     #3a4575;
+      --text-muted:   #6b76a8;
+      --border:       #d8ddf0;
+
+      --font: 'Outfit', system-ui, sans-serif;
+
+      --r-sm:  6px;
+      --r-md:  12px;
+      --r-lg:  18px;
+      --r-xl:  24px;
+      --r-2xl: 32px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px;
+      height: 62px;
+      background: var(--indigo-dark);
+      box-shadow: 0 2px 12px rgba(37,47,133,.25);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .logo-badge {
+      width: 34px; height: 34px;
+      background: var(--amber);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 14px; color: var(--white);
+      letter-spacing: -.3px;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-weight: 700; font-size: 22px; color: var(--white);
+      letter-spacing: .1px;
+    }
+    .logo-sub {
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,.45);
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      line-height: 1;
+      display: block;
+      margin-top: 1px;
+    }
+
+    .nav-right {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-link {
+      color: rgba(255,255,255,.72);
+      text-decoration: none;
+      font-size: 14px; font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 100px;
+      transition: color .18s, background .18s;
+    }
+    .nav-link:hover { color: var(--white); background: rgba(255,255,255,.1); }
+
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--amber);
+      color: var(--white) !important;
+      font-weight: 700 !important;
+      font-size: 14px;
+      padding: 7px 16px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background .18s, transform .15s;
+    }
+    .nav-btn:hover { background: var(--amber-dark); transform: translateY(-1px); }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero {
+      background: var(--indigo-dark);
+      padding: 96px 32px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-dots {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .hero-glow {
+      position: absolute; pointer-events: none;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,164,32,.14) 0%, transparent 70%);
+      top: -120px; right: -60px;
+      animation: glow-drift 8s ease-in-out infinite alternate;
+    }
+    @keyframes glow-drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(-30px, 20px) scale(1.12); }
+    }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.85);
+      font-size: 11.5px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 26px;
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--amber);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .6; transform: scale(.75); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.18;
+      color: var(--white);
+      margin-bottom: 20px;
+      letter-spacing: -.4px;
+    }
+    .hero h1 .accent { color: var(--amber); }
+
+    .hero-sub {
+      font-size: clamp(.95rem, 1.8vw, 1.1rem);
+      font-weight: 400;
+      color: rgba(255,255,255,.68);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.72;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font);
+      font-weight: 700; font-size: 14.5px;
+      padding: 11px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s, background .18s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-amber {
+      background: var(--amber);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(245,164,32,.35);
+    }
+    .btn-amber:hover { background: var(--amber-dark); box-shadow: 0 7px 22px rgba(245,164,32,.5); }
+
+    .btn-ghost-white {
+      background: rgba(255,255,255,.1);
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.22);
+    }
+    .btn-ghost-white:hover { background: rgba(255,255,255,.18); }
+
+    .btn-teal-light {
+      background: #187f6e;
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(24,127,110,.35);
+    }
+    .btn-teal-light:hover {
+      background: #1aa090;
+      box-shadow: 0 7px 22px rgba(24,127,110,.5);
+    }
+
+    /* ── PILLS STRIP ─────────────────────────────────────────── */
+    .pills-strip {
+      background: var(--indigo);
+      padding: 18px 32px;
+      display: flex; align-items: center;
+      justify-content: center;
+      gap: 10px; flex-wrap: wrap;
+    }
+    .feature-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.88);
+      font-size: 13px; font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ── SECTION BASE ────────────────────────────────────────── */
+    .section { padding: 72px 32px; }
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--indigo-mid);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.22;
+      margin-bottom: 14px;
+      letter-spacing: -.3px;
+    }
+    .section-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+    .tc { text-align: center; }
+    .tc .section-desc { margin: 0 auto; }
+
+    /* ── OFFERINGS ───────────────────────────────────────────── */
+    .offerings { background: var(--bg); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+      max-width: 1080px;
+      margin: 48px auto 0;
+    }
+
+    /* Card outer */
+    .offer-card {
+      background: var(--bg-card);
+      border-radius: var(--r-2xl);
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      display: flex; flex-direction: column;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .offer-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(53,73,181,.14);
+    }
+
+    /* Card header band — matches studio card style */
+    .card-band {
+      padding: 32px 32px 28px;
+      position: relative; overflow: hidden;
+    }
+    .card-band::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      top: -60px; right: -50px;
+      pointer-events: none;
+    }
+    .offer-card.studio  .card-band { background: var(--indigo); }
+    .offer-card.projects .card-band { background: var(--teal); }
+
+    .card-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.22);
+      color: rgba(255,255,255,.9);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .card-icon {
+      font-size: 32px; margin-bottom: 14px; display: block;
+    }
+    .card-band h2 {
+      font-size: 1.55rem; font-weight: 800;
+      color: var(--white); line-height: 1.22;
+      margin-bottom: 10px; letter-spacing: -.2px;
+    }
+    .card-band p {
+      font-size: .92rem; color: rgba(255,255,255,.72);
+      line-height: 1.65;
+    }
+
+    /* Card body */
+    .card-body {
+      padding: 26px 32px 30px;
+      display: flex; flex-direction: column; flex: 1; gap: 0;
+    }
+
+    .card-tagline {
+      font-size: 1rem; font-weight: 700;
+      color: var(--text-mid);
+      border-left: 3px solid var(--amber);
+      padding-left: 12px;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex; flex-direction: column;
+      gap: 10px;
+      margin-bottom: 26px;
+      flex: 1;
+    }
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .91rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+    .f-icon {
+      width: 24px; height: 24px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0; margin-top: 1px;
+    }
+    .studio  .f-icon { background: var(--indigo-pale); }
+    .projects .f-icon { background: var(--teal-pale); }
+
+    /* CTA button at bottom of card */
+    .card-cta {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      text-decoration: none;
+      font-family: var(--font);
+      font-weight: 700; font-size: 14.5px;
+      padding: 12px 20px;
+      border-radius: 100px;
+      transition: transform .18s, box-shadow .18s, background .18s;
+      text-align: center;
+    }
+    .card-cta:hover { transform: translateY(-2px); }
+    .card-cta svg { transition: transform .18s; flex-shrink: 0; }
+    .card-cta:hover svg { transform: translateX(4px); }
+
+    .studio  .card-cta {
+      background: var(--amber);
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(245,164,32,.32);
+    }
+    .studio .card-cta:hover { background: var(--amber-dark); box-shadow: 0 8px 22px rgba(245,164,32,.45); }
+
+    .projects .card-cta {
+      background: var(--teal);
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(13,124,110,.28);
+    }
+    .projects .card-cta:hover { background: var(--teal-light); box-shadow: 0 8px 22px rgba(13,124,110,.4); }
+
+    /* ── HOW IT WORKS ────────────────────────────────────────── */
+    .how { background: var(--white); }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 4px;
+      max-width: 1000px;
+      margin: 48px auto 0;
+      position: relative;
+    }
+    /* connector line */
+    .steps-row::before {
+      content: '';
+      position: absolute;
+      top: 38px; left: 12%; right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--indigo-pale), var(--indigo) 50%, var(--amber));
+    }
+
+    .step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 0 12px;
+      position: relative; z-index: 1;
+    }
+    .step-circle {
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--indigo-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 10px rgba(53,73,181,.1);
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .step:hover .step-circle {
+      border-color: var(--indigo-mid);
+      transform: scale(1.07);
+      box-shadow: 0 6px 20px rgba(53,73,181,.18);
+    }
+    .step-num {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--indigo-mid);
+      margin-bottom: 6px;
+    }
+    .step h4 {
+      font-size: .97rem; font-weight: 700;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .step p {
+      font-size: .85rem; color: var(--text-muted);
+      line-height: 1.58;
+    }
+
+    /* ── AUDIENCE ────────────────────────────────────────────── */
+    .audience { background: var(--indigo); }
+    .audience-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 56px; align-items: center;
+    }
+    .audience .section-label { color: var(--amber-light); }
+    .audience .section-title { color: var(--white); }
+    .audience .section-desc { color: rgba(255,255,255,.65); max-width: 100%; }
+
+    .audience-pills {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 24px;
+    }
+    .a-pill {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.85);
+      font-size: 13px; font-weight: 500;
+      padding: 5px 14px; border-radius: 100px;
+    }
+
+    .audience-blocks {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .a-block {
+      background: rgba(255,255,255,.09);
+      border: 1.5px solid rgba(255,255,255,.14);
+      border-radius: var(--r-lg);
+      padding: 20px 22px;
+      display: flex; gap: 14px; align-items: flex-start;
+      transition: background .18s, transform .2s;
+    }
+    .a-block:hover { background: rgba(255,255,255,.15); transform: translateX(5px); }
+    .a-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .a-block h4 { font-size: .94rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .a-block p  { font-size: .85rem; color: rgba(255,255,255,.62); line-height: 1.55; }
+
+    /* ── FINAL CTA ───────────────────────────────────────────── */
+    .final-cta {
+      background: var(--bg);
+      padding: 80px 32px;
+      text-align: center;
+    }
+    .cta-cards {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .cta-tile {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 28px 28px 24px;
+      width: 280px;
+      display: flex; flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      text-decoration: none;
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+    }
+    .cta-tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(53,73,181,.12);
+      border-color: var(--indigo-mid);
+    }
+    .cta-tile-icon {
+      width: 46px; height: 46px;
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .cta-tile.studio-tile .cta-tile-icon  { background: var(--indigo-pale); }
+    .cta-tile.projects-tile .cta-tile-icon { background: var(--teal-pale); }
+
+    .cta-tile-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .cta-tile h3 {
+      font-size: 1.05rem; font-weight: 800;
+      color: var(--text); line-height: 1.2;
+    }
+    .cta-tile p {
+      font-size: .85rem; color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .cta-tile-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 700; font-size: 13.5px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-top: 4px;
+      transition: background .18s, transform .15s;
+    }
+    .cta-tile-btn:hover { transform: translateY(-1px); }
+    .studio-tile  .cta-tile-btn { background: var(--amber); color: var(--white); }
+    .projects-tile .cta-tile-btn { background: var(--teal);  color: var(--white); }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--indigo-dark);
+      padding: 48px 32px 26px;
+    }
+    .footer-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap;
+      gap: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 20px;
+    }
+    .footer-brand-desc {
+      font-size: .86rem;
+      color: rgba(255,255,255,.42);
+      max-width: 240px; line-height: 1.65;
+      margin-top: 10px;
+    }
+    .footer-cols { display: flex; gap: 48px; flex-wrap: wrap; }
+    .footer-col h5 {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: rgba(255,255,255,.32);
+      margin-bottom: 12px;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,.6);
+      text-decoration: none;
+      font-size: .875rem; font-weight: 400;
+      margin-bottom: 8px;
+      transition: color .16s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .footer-bottom p, .footer-bottom a {
+      font-size: .8rem; color: rgba(255,255,255,.28);
+      text-decoration: none;
+    }
+    .footer-bottom a:hover { color: rgba(255,255,255,.55); }
+
+    /* ── REVEAL ANIMATIONS ───────────────────────────────────── */
+    .r {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .r.in { opacity: 1; transform: translateY(0); }
+    .r.d1 { transition-delay: .1s; }
+    .r.d2 { transition-delay: .2s; }
+    .r.d3 { transition-delay: .3s; }
+    .r.d4 { transition-delay: .4s; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .nav { padding: 0 18px; }
+      .nav-link { display: none; }
+      .hero, .section, .how, .audience, .final-cta, footer { padding-left: 18px; padding-right: 18px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .steps-row { grid-template-columns: 1fr 1fr; }
+      .steps-row::before { display: none; }
+      .audience-inner { grid-template-columns: 1fr; gap: 32px; }
+      .cta-tile { width: 100%; max-width: 360px; }
+      .card-band, .card-body { padding-left: 22px; padding-right: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav class="nav">
+  <a class="nav-logo" href="#">
+    <div class="logo-badge">IC</div>
+    <div>
+      <div class="logo-text">ICAPP</div>
+      <span class="logo-sub">Career Prep Platform</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a class="nav-link" href="#offerings">Platforms</a>
+    <a class="nav-link" href="#how">How It Works</a>
+    <a class="nav-link" href="#audience">Who It's For</a>
+    <a class="nav-btn" data-cta-key="studio" target="_blank">
+      + Get Started
+    </a>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Industry Career Preparation Platform
+    </div>
+    <h1>
+      Don't just graduate —<br>
+      <span class="accent">arrive industry-ready.</span>
+    </h1>
+    <p class="hero-sub">
+      Preparing students for industry through AI-driven learning, personalised assessment, and hands-on experiential projects. Two dedicated platforms, one mission.
+    </p>
+    <div class="hero-actions">
+      <a data-cta-key="studio" target="_blank" class="btn btn-amber">
+        Job-focused Learning
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+      <a data-cta-key="projects" target="_blank" class="btn btn-teal-light">
+        Internships &amp; Capstone Projects
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURE PILLS ───────────────────────────────────────── -->
+<div class="pills-strip">
+  <span class="feature-pill">🤖 AI-curated lecture plans</span>
+  <span class="feature-pill">✏️ Role-specific assignments</span>
+  <span class="feature-pill">🎬 Video portfolio showcase</span>
+  <span class="feature-pill">🏗️ Real capstone projects</span>
+  <span class="feature-pill">🔗 Share with any employer</span>
+</div>
+
+<!-- ── OFFERINGS ──────────────────────────────────────────── -->
+<section class="section offerings" id="offerings">
+  <div class="tc r">
+    <div class="section-label">Two Integrated Platforms</div>
+    <h2 class="section-title">One ecosystem — two pathways to industry.</h2>
+    <p class="section-desc">Whether you're preparing for a specific job or building real experience on live projects, ICAPP has a dedicated platform for you.</p>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- ICAPP STUDIO -->
+    <div class="offer-card studio r d1">
+      <div class="card-band">
+        <div class="card-tag">
+          <svg width="8" height="8" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>
+          AI-Powered
+        </div>
+        <span class="card-icon">🎯</span>
+        <h2>ICAPP Studio</h2>
+        <p>Job-focused learning that meets you at any role, any industry, anywhere in the world.</p>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">"Don't just apply — arrive prepared."</p>
+        <ul class="feature-list">
+          <li>
+            <div class="f-icon">🤖</div>
+            <span><strong>AI-curated lecture plans</strong> generated instantly from any LinkedIn job description you paste.</span>
+          </li>
+          <li>
+            <div class="f-icon">✏️</div>
+            <span><strong>Role-specific assignments &amp; mock interviews</strong> tailored to the exact position and company.</span>
+          </li>
+          <li>
+            <div class="f-icon">🎬</div>
+            <span><strong>Video portfolio showcase</strong> — record your presentation and share proof with employers directly.</span>
+          </li>
+          <li>
+            <div class="f-icon">🔗</div>
+            <span><strong>Browse live curated jobs</strong> with pre-built preparatory content, updated regularly.</span>
+          </li>
+        </ul>
+        <a data-cta-key="studio" target="_blank" class="card-cta">
+          + Open ICAPP Studio
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ICAPP INTERNSHIPS -->
+    <div class="offer-card projects r d2">
+      <div class="card-band">
+        <div class="card-tag">
+          <svg width="8" height="8" fill="currentColor" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4"/></svg>
+          Experiential
+        </div>
+        <span class="card-icon">🏗️</span>
+        <h2>ICAPP Internships &amp; Projects</h2>
+        <p>Capstone projects, apprenticeships, and industry internships — real work, real outcomes, real portfolio.</p>
+      </div>
+      <div class="card-body">
+        <p class="card-tagline">"Experience that speaks before you do."</p>
+        <ul class="feature-list">
+          <li>
+            <div class="f-icon">🏢</div>
+            <span><strong>Industry-partnered capstone projects</strong> tackling real business challenges across multiple domains.</span>
+          </li>
+          <li>
+            <div class="f-icon">🤝</div>
+            <span><strong>Structured apprenticeships</strong> that pair students with mentors from leading organisations.</span>
+          </li>
+          <li>
+            <div class="f-icon">📂</div>
+            <span><strong>Portfolio-building outcomes</strong> — deliverables you own and can demonstrate to any recruiter.</span>
+          </li>
+          <li>
+            <div class="f-icon">🌐</div>
+            <span><strong>Cross-domain projects</strong> spanning tech, marketing, data analytics, operations, and more.</span>
+          </li>
+        </ul>
+        <a data-cta-key="projects" target="_blank" class="card-cta">
+          → Explore Internships &amp; Projects
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ─────────────────────────────────────────── -->
+<section class="section how" id="how">
+  <div class="tc r">
+    <div class="section-label">The ICAPP Journey</div>
+    <h2 class="section-title">From campus to career in four steps.</h2>
+    <p class="section-desc">A structured path that takes you from exploring opportunities to a proof-of-readiness portfolio that stands out.</p>
+  </div>
+  <div class="steps-row">
+    <div class="step r d1">
+      <div class="step-circle">🔍</div>
+      <div class="step-num">Step 01</div>
+      <h4>Discover a Role</h4>
+      <p>Browse live job listings or paste any job description to start your tailored preparation.</p>
+    </div>
+    <div class="step r d2">
+      <div class="step-circle">🤖</div>
+      <div class="step-num">Step 02</div>
+      <h4>AI Builds Your Plan</h4>
+      <p>ICAPP Studio generates a personalised lecture series and assignment set for that exact role.</p>
+    </div>
+    <div class="step r d3">
+      <div class="step-circle">🏗️</div>
+      <div class="step-num">Step 03</div>
+      <h4>Work on Real Projects</h4>
+      <p>Apply your learning on industry capstone projects and internships through ICAPP Projects.</p>
+    </div>
+    <div class="step r d4">
+      <div class="step-circle">🚀</div>
+      <div class="step-num">Step 04</div>
+      <h4>Showcase &amp; Stand Out</h4>
+      <p>Build a verifiable portfolio, record a video presentation, and share it with any employer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── AUDIENCE ─────────────────────────────────────────────── -->
+<section class="section audience" id="audience">
+  <div class="audience-inner">
+    <div class="r">
+      <div class="section-label">Who ICAPP Is For</div>
+      <h2 class="section-title">Built for students who want more than a degree.</h2>
+      <p class="section-desc">Whether you're a final-year student, a recent graduate, or still mapping your career — ICAPP meets you where you are.</p>
+      <div class="audience-pills">
+        <span class="a-pill">Final-Year Students</span>
+        <span class="a-pill">Recent Graduates</span>
+        <span class="a-pill">Career Changers</span>
+        <span class="a-pill">Internship Seekers</span>
+        <span class="a-pill">MBA Students</span>
+        <span class="a-pill">Tech Professionals</span>
+      </div>
+    </div>
+    <div class="audience-blocks r d2">
+      <div class="a-block">
+        <div class="a-icon">🎓</div>
+        <div>
+          <h4>Students &amp; Graduates</h4>
+          <p>Bridge the gap between your degree and your first role with AI-guided prep and live project experience.</p>
+        </div>
+      </div>
+      <div class="a-block">
+        <div class="a-icon">🏛️</div>
+        <div>
+          <h4>Colleges &amp; Universities</h4>
+          <p>Equip your students with industry-aligned tools and verifiable outcomes that improve placement rates.</p>
+        </div>
+      </div>
+      <div class="a-block">
+        <div class="a-icon">🏢</div>
+        <div>
+          <h4>Employers &amp; Recruiters</h4>
+          <p>Access candidates who have already prepared specifically for your role — with proof, not just a CV.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ────────────────────────────────────────────── -->
+<section class="final-cta">
+  <div class="tc r">
+    <div class="section-label">Get Started Today</div>
+    <h2 class="section-title">Ready to prepare for the industry?</h2>
+    <p class="section-desc">Choose the platform that fits where you are — or use both together for the full ICAPP experience.</p>
+  </div>
+  <div class="cta-cards">
+
+    <a class="cta-tile studio-tile r d1" data-cta-key="studio" target="_blank">
+      <div class="cta-tile-icon">🎯</div>
+      <div class="cta-tile-label">AI Learning</div>
+      <h3>ICAPP Studio</h3>
+      <p>Paste a job link and get your personalised learning plan in seconds.</p>
+      <div class="cta-tile-btn">
+        + Open Studio
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </a>
+
+    <a class="cta-tile projects-tile r d2" data-cta-key="projects" target="_blank">
+      <div class="cta-tile-icon">🏗️</div>
+      <div class="cta-tile-label">Experiential</div>
+      <h3>Internships &amp; Projects</h3>
+      <p>Take on real capstone projects and build a portfolio that proves your readiness.</p>
+      <div class="cta-tile-btn">
+        → Explore Projects
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a class="nav-logo" href="#" style="text-decoration:none">
+        <div class="logo-badge">IC</div>
+        <div>
+          <div class="logo-text">ICAPP</div>
+          <span class="logo-sub">Career Prep Platform</span>
+        </div>
+      </a>
+      <p class="footer-brand-desc">Industry Career Preparation Platform — bridging students to industry through AI learning and experiential projects.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h5>Platforms</h5>
+        <a data-cta-key="studio" target="_blank">ICAPP Studio</a>
+        <a data-cta-key="projects" target="_blank">Internships &amp; Projects</a>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <a href="#offerings">Our Offerings</a>
+        <a href="#how">How It Works</a>
+        <a href="#audience">Who It's For</a>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <a href="mailto:support@icapp.co.in">support@icapp.co.in</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ICAPP. All rights reserved.</p>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
+
+<script>
+  // ── Scroll reveal ────────────────────────────────────────────
+  const els = document.querySelectorAll('.r');
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.1, rootMargin: '0px 0px -36px 0px' }
+  );
+  els.forEach(el => io.observe(el));
+
+  // ── Nav depth on scroll ──────────────────────────────────────
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 30
+      ? '0 3px 18px rgba(37,47,133,.35)'
+      : '0 2px 12px rgba(37,47,133,.25)';
+  }, { passive: true });
+
+  // ── CTA URL redirects from config ───────────────────────────
+  async function applyCtaLinks() {
+    try {
+      const resp = await fetch('links.json', { cache: 'no-store' });
+      if (!resp.ok) return;
+      const config = await resp.json();
+      document.querySelectorAll('[data-cta-key]').forEach(el => {
+        const url = config[el.dataset.ctaKey];
+        if (url) el.href = url;
+      });
+    } catch(e) { /* keep existing href if config fails to load */ }
+  }
+  applyCtaLinks();
+</script>
+</script>
+</body>
+</html>
