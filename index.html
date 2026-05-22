@@ -65,37 +65,21 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 32px;
-      height: 62px;
+      height: 95px;
       background: var(--indigo-dark);
       box-shadow: 0 2px 12px rgba(37,47,133,.25);
     }
 
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none;
-    }
-    .logo-badge {
-      width: 34px; height: 34px;
-      background: var(--amber);
-      border-radius: var(--r-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 14px; color: var(--white);
-      letter-spacing: -.3px;
-      flex-shrink: 0;
-    }
-    .logo-text {
-      font-weight: 700; font-size: 22px; color: var(--white);
-      letter-spacing: .1px;
-    }
-    .logo-sub {
-      font-size: 12px; font-weight: 600;
-      color: rgba(255,255,255,.45);
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      line-height: 1;
-      display: block;
-      margin-top: 1px;
-    }
+     .nav-logo {
+       display: flex; align-items: center; gap: 10px;
+       text-decoration: none;
+     }
+     .nav-logo img {
+       height: 91px;
+       width: auto;
+     }
+     .nav-logo .logo-text { display: none; }
+     .nav-logo .logo-sub  { display: none; }
 
     .nav-right {
       display: flex; align-items: center; gap: 8px;
@@ -640,11 +624,7 @@
 <!-- ── NAV ─────────────────────────────────────────────────── -->
 <nav class="nav">
   <a class="nav-logo" href="#">
-    <div class="logo-badge">IC</div>
-    <div>
-      <div class="logo-text">ICAPP</div>
-      <span class="logo-sub">Career Prep Platform</span>
-    </div>
+    <img src="icapp_logo_modernized_light_simple.png" alt="ICAPP" />
   </a>
   <div class="nav-right">
     <a class="nav-link" href="#offerings">Platforms</a>
@@ -899,11 +879,7 @@
   <div class="footer-top">
     <div>
       <a class="nav-logo" href="#" style="text-decoration:none">
-        <div class="logo-badge">IC</div>
-        <div>
-          <div class="logo-text">ICAPP</div>
-          <span class="logo-sub">Career Prep Platform</span>
-        </div>
+        <img src="icapp_logo_modernized_light_simple.png" alt="ICAPP" />
       </a>
       <p class="footer-brand-desc">Industry Career Preparation Platform — bridging students to industry through AI learning and experiential projects.</p>
     </div>
